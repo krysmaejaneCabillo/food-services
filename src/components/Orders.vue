@@ -36,6 +36,9 @@ export default {
         removeItem(id) {
             this.$emit('remove-item')
         },
+        purchase(){
+            this.$emit('orderSuccessful')
+        }
        
     }
 };
@@ -177,20 +180,6 @@ export default {
                                         </div>
                                     </div>
 
-                                    <!-- Promo Code -->
-                                    <div class="mt-6">
-                                        <label class="block text-sm font-medium text-red-100 mb-2">Promo Code
-                                            🎟️</label>
-                                        <div class="flex gap-2">
-                                            <input type="text"
-                                                class="flex-1 px-4 py-2.5 border border-red-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-400 transition-all bg-red-100"
-                                                placeholder="Enter code">
-                                            <button
-                                                class="px-5 py-2.5 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-colors font-medium">
-                                                Apply
-                                            </button>
-                                        </div>
-                                    </div>
 
                                     <div class="mt-7 space-y-3">
                                         <button @click="purchase"

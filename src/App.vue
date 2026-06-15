@@ -36,11 +36,9 @@ export default {
         },
         remove(index) {
             this.order.splice(index, 1)
-        }
-
-
+        },
+   
     }
-}
 
 </script>
 
@@ -48,7 +46,7 @@ export default {
     <Navbar @goTo="changePage" :orderCount="order.length" @search-bar="handleSearch" />
     <Home v-if="currentPage === 'Home'" @add-order="addOrder" :bar="searchBar" />
     <About v-if="currentPage === 'About'" />
-    <Orders v-if="currentPage === 'Orders'" :order="order" @remove-item="remove" />
+    <Orders v-if="currentPage === 'Orders'" :order="order" @remove-item="remove"/>
     <Contact v-if="currentPage === 'Contact'" />
     <Footer />
 </template>

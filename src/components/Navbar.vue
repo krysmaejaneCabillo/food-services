@@ -178,15 +178,15 @@ export default {
                     About Us</p>
                 <p @click="navigate('Card')"
                     class="px-3 py-1.5 hover:text-red-600 hover:underline underline-offset-6 transition-all cursor-pointer"
-                    :class="activePage === 'Sell' ? 'underline underline-offset-6 decoration-red-800 text-red-800 font-bold' : 'bg-none'">
+                    :class="activePage === 'Card' ? 'underline underline-offset-6 decoration-red-800 text-red-800 font-bold' : 'bg-none'">
                     Note Card</p>
                 <p @click="navigate('Contact')"
                     class="px-3 py-1.5 hover:text-red-600 hover:underline underline-offset-6 transition-all cursor-pointer"
-                    :class="activePage === 'Saved' ? 'underline underline-offset-6 decoration-red-800 text-red-800 font-bold' : 'bg-none'">
+                    :class="activePage === 'Contact' ? 'underline underline-offset-6 decoration-red-800 text-red-800 font-bold' : 'bg-none'">
                     Contact us</p>
                 <p @click="navigate('Orders')"
                     class="px-3 py-1.5 hover:text-red-600 hover:underline underline-offset-6 transition-all cursor-pointer"
-                    :class="activePage === 'Krys' ? 'underline underline-offset-6 decoration-red-800 text-red-800 font-bold' : 'bg-none'">
+                    :class="activePage === 'Orders' ? 'underline underline-offset-6 decoration-red-800 text-red-800 font-bold' : 'bg-none'">
                     Orders</p>
             </div>
         </div>
