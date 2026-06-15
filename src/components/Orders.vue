@@ -1,57 +1,47 @@
 <script>
-
-
 export default {
     props: {
         order: {
             type: Array,
-
         },
-
     },
-    // emits: ['remove-item'],
     data() {
         return {
-            // subtotal: 0,
-            // shippingFee: 0,
-            // tax: 0,
-            // total: 0
-
-            // confirmOpen: false,
-            // currentIndex: 0,
-            // confirmed: []
-
+           
         };
     },
-        computed: {
+    computed: {
         subtotal() {
             return this.order.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
         },
         shippingFee() {
-            return (this.subtotal > 0 ? 5.99  : 0).toFixed(2);
+            return (this.subtotal > 0 ? 5.99 : 0).toFixed(2);
         },
         tax() {
             return (this.subtotal * 0.02).toFixed(2); // 2% tax
         },
         total() {
             return (parseFloat(this.subtotal) + parseFloat(this.shippingFee) + parseFloat(this.tax)).toFixed(2);
+        },
+        time(){
+         if(this.order.length === 0){
+            return"---"
+         }else{
+            return"30 to 60 mins."
+         }
         }
+       
     },
-
     methods: {
-        // removeItem(id) {
-        //     this.$emit('remove-item', id)
-        // },
-        // openModal(index) {
-        //     this.currentIndex = index;
-        //     this.confirmOpen = true;
-        // },
+        removeItem(id) {
+            this.$emit('remove-item')
+        },
+       
     }
 };
 </script>
 
 <template>
-
     <div class="bg-gradient-to-b from-black via-red-700 to-black min-h-screen font-sans">
         <!-- Main Content -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -110,13 +100,8 @@ export default {
 
                         <!-- Cart Items List -->
                         <div v-else>
-
                             <div
                                 class="bg-white backdrop-blur-sm text-red-800 border border-red-200 rounded-sm text-xl font-bold px-3 py-2 shadow-sm hover:shadow-md transition-shadow w-full sm:w-auto mb-2">
-                                <!-- <input type="checkbox" checked="checked">
-                                <label class="container ml-2">All Order
-                                    <span class="checkmark"></span>
-                                </label> -->
                                 YOUR ORDER
                             </div>
                             <div class="bg-white rounded-3xl shadow-sm p-4 sm:p-5 mb-4 hover:shadow-md transition-all duration-300 border border-pink-100/50"
@@ -133,14 +118,11 @@ export default {
                                         class="font-bold text-gray-800 text-lg w-full sm:w-auto text-right sm:text-left">
                                         ${{ (item.price * item.quantity).toFixed(2) }}
                                     </div>
-                                    <button @click="removeItem(item.id)"
+                                    <button @click="removeItem"
                                         class="text-red-700 hover:text-red-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-50 transition-colors text-xl font-bold ml-auto sm:ml-0">
                                         ×
                                     </button>
                                 </div>
-
-                                <!-- Order Summary Section -->
-
                             </div>
                         </div>
                     </div>
@@ -168,6 +150,22 @@ export default {
                                                 : '$' +
                                                 shippingFee }}</span>
                                         </div>
+                                        <!-- Delivery Time (hours/minutes only) -->
+                                        <div
+                                            class="flex justify-between items-center py-1 border-b border-red-900/30 pb-2">
+                                            <div class="flex items-center gap-1.5">
+                                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM3.5 1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm9 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm1.5 6.5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
+                                                    <path
+                                                        d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
+                                                </svg> -->
+                                                <span>Estimated Delivery</span>
+                                            </div>
+                                            <span class="font-medium text-red-300">{{ time }}</span>
+                                        </div>
+                                        <!-- End Delivery Time -->
                                         <div class="flex justify-between items-center py-1">
                                             <span>Tax</span>
                                             <span class="font-medium">${{ tax }}</span>
@@ -194,11 +192,10 @@ export default {
                                         </div>
                                     </div>
 
-                                   
                                     <div class="mt-7 space-y-3">
                                         <button @click="purchase"
                                             class="w-full py-3.5 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-xl font-medium hover:from-red-700 hover:to-red-500 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                           Pay Orders
+                                            Pay Orders
                                         </button>
                                         <a href="#"
                                             class="block text-center text-red-500 hover:text-red-600 hover:underline transition-colors font-medium">

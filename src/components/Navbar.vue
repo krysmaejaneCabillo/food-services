@@ -28,7 +28,7 @@ export default {
         },
          search() {
             this.$emit('search-bar', this.searchBar)
-        }
+        },
     }
 
 
