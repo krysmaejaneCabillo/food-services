@@ -33,11 +33,16 @@ export default {
        
     },
     methods: {
-        removeItem(id) {
+        removeItem() {
             this.$emit('remove-item')
         },
         purchase(){
-            this.$emit('orderSuccessful')
+           if (this.order.length === 0){
+            alert("NO ORDER YET!!")
+           }else {
+            alert ('ORDER SUCCESSFUL')
+           }
+           this.removeItem()
         }
        
     }
@@ -95,10 +100,10 @@ export default {
                     <!-- Cart Items Section -->
                     <div class="lg:col-span-2 space-y-5">
                         <!-- Empty Cart -->
-                        <div v-if="order.length === 0" class="text-center bg-white rounded-3xl shadow-sm py-16 px-4">
+                        <div v-if="order.length === 0" class="text-center bg-transparent rounded-3xl shadow-lg border border-red-200 py-16 px-4">
                             <div class="text-6xl mb-4">🛍️</div>
-                            <p class="text-2xl sm:text-3xl font-bold text-red-500 mb-2">No Order</p>
-                            <p class="text-gray-500">Add some order product to make it happy!</p>
+                            <p class="text-2xl sm:text-3xl font-bold text-shadow-lg text-shadow-black/70 text-red-500 mb-2">No Order</p>
+                            <p class="text-black fomt-bold text-shadow-sm text-xl text-shadow-red-500/90 ">Add some order product to make it happy!</p>
                         </div>
 
                         <!-- Cart Items List -->

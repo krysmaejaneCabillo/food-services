@@ -2,22 +2,24 @@
 import Modal from '../Modal/Modal.vue';
 export default {
     components: {
-        Modal
+        Modal,
+
     },
     props: {
         selectProduct: {
             type: Object
         },
-        bar:{
+        bar: {
             type: String
         }
-      
+
 
     },
     data() {
         return {
             openModal: false,
             currentIndex: 0,
+          
             product: [
                 {
                     id: 1,
@@ -114,7 +116,7 @@ export default {
 
         }
     },
-        computed: {
+    computed: {
         filteredProducts() {
             if (!this.bar.trim()) {
                 return this.product
@@ -131,10 +133,11 @@ export default {
             this.currentIndex = index;
             this.openModal = true;
         },
-        addOrder(foods){
-            this.$emit('add-order', {...foods})
+        addOrder(foods) {
+            this.$emit('add-order', { ...foods })
 
-        }
+        },
+      
     }
 }
 
@@ -185,14 +188,12 @@ export default {
                     <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 text-center">
                         <img src="https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2hpY2tlbiUyMGZvb2QlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D"
                             alt="Chicken" class="w-30 h-30 mx-auto mb-2 sm:mb-3" />
-                        <span
-                            class="text-sm font-medium text-gray-700 cursor-pointer hover:text-red-600">Chicken</span>
+                        <span class="text-sm font-medium text-gray-700 cursor-pointer hover:text-red-600">Chicken</span>
                     </div>
                     <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 text-center">
                         <img src="https://plus.unsplash.com/premium_photo-1717345994192-f5bc10b61c09?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2VhZm9vZCUyMGZvb2QlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D"
                             alt="Seafoods" class="w-30 h-30 mx-auto mb-2 sm:mb-3" />
-                        <span
-                            class="text-sm font-medium text-gray-700 cursor-pointer hover:text-red-600">Seafood</span>
+                        <span class="text-sm font-medium text-gray-700 cursor-pointer hover:text-red-600">Seafood</span>
                     </div>
                     <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 text-center">
                         <img src="https://images.unsplash.com/photo-1627042633145-b780d842ba45?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFzdGElMjBmb29kJTIwcGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D"
@@ -259,5 +260,7 @@ export default {
         </main>
     </div>
 
-    <Modal v-if="openModal" :selectProduct="product[currentIndex]" @close-modal="openModal = false" @add-order="addOrder" />
+    <Modal v-if="openModal" :selectProduct="product[currentIndex]" @close-modal="openModal = false"
+        @add-order="addOrder" />
+
 </template>
